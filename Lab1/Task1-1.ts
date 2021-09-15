@@ -88,7 +88,7 @@ function createCustomer(name:string, age?:number, city?:string)
     if(age && city)
     {
 
-        console.log(`Name: ${name}, age: ${age}, city: ${age}`)
+        console.log(`Name: ${name}, age: ${age}, city: ${city}`)
 
     }
     else if(age)
@@ -114,8 +114,20 @@ function createCustomer(name:string, age?:number, city?:string)
 function сheckoutWorkers(customer:string, ...workerIDs:number[])
 {
 
+    let workers:Array<string> =[];
 
+    for(var id of workerIDs){
 
+        let worker = getAllworkers().find(el => el.id==id);
+
+        if(worker.available)
+        {
+            workers.push(worker.Name+` `+worker.surname);
+        }        
+
+    }
+    console.log(customer);
+    return workers;
 }
 
 console.log("Task 1.1");
@@ -150,3 +162,6 @@ createCustomer("Vlad", 9);
 createCustomer("Vlad",9,"Old fragmentation city");
 getWorkersNamesByCategory();
 logFirstAvailable();
+
+let myWorkers = сheckoutWorkers('Ann', 1, 2, 4);
+myWorkers.forEach(worker => console.log(worker))

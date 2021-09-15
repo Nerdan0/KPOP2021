@@ -15,7 +15,7 @@ function getAllworkers() {
     ];
     return workers;
 }
-function logFirstAvailable(workers) {
+function logFirstAvailable(workers = getAllworkers()) {
     //let workersNum:Number = workers.length
     console.log(workers.length);
     for (var worker of workers) {
@@ -24,7 +24,7 @@ function logFirstAvailable(workers) {
         }
     }
 }
-function getWorkersNamesByCategory(cat) {
+function getWorkersNamesByCategory(cat = Category.Designer) {
     let workers = [];
     for (var worker of getAllworkers()) {
         if (worker.category == cat) {
@@ -54,6 +54,31 @@ function getWorkerByID(id) {
 function createCustomerID(name, id) {
     return name + " " + id;
 }
+function createCustomer(name, age, city) {
+    if (age && city) {
+        console.log(`Name: ${name}, age: ${age}, city: ${city}`);
+    }
+    else if (age) {
+        console.log(`Name: ${name}, age: ${age}`);
+    }
+    else if (city) {
+        console.log(`Name: ${name}, city: ${age}`);
+    }
+    else {
+        console.log(`Name: ${name}`);
+    }
+}
+function сheckoutWorkers(customer, ...workerIDs) {
+    let workers = [];
+    for (var id of workerIDs) {
+        let worker = getAllworkers().find(el => el.id == id);
+        if (worker.available) {
+            workers.push(worker.Name + ` ` + worker.surname);
+        }
+    }
+    console.log(customer);
+    return workers;
+}
 console.log("Task 1.1");
 logFirstAvailable(getAllworkers());
 console.log("Task 1.2");
@@ -74,3 +99,11 @@ let IdGenerator = (name, id) => { return name + " " + id; };
 console.log(IdGenerator("Stes", 24));
 IdGenerator = createCustomerID;
 console.log(IdGenerator("Aik", 13));
+console.log("Task 1.5");
+createCustomer("Vlad");
+createCustomer("Vlad", 9);
+createCustomer("Vlad", 9, "Old fragmentation city");
+getWorkersNamesByCategory();
+logFirstAvailable();
+let myWorkers = сheckoutWorkers('Ann', 1, 2, 4);
+myWorkers.forEach(worker => console.log(worker));
