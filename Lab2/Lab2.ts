@@ -65,7 +65,7 @@ let favoriteLibrarian:Librarian = new UniversityLibrarian();
 favoriteLibrarian.name = "Baldick";
 favoriteLibrarian.assistCustomer("M@k$$im")
 
-class ReferenceItem{
+abstract class ReferenceItem{
 
     /*title:string;
     year:number;
@@ -102,6 +102,8 @@ class ReferenceItem{
         console.log(`${this.title} was published in ${this.year} by ${ReferenceItem.department}`);
     }
 
+    abstract printCitation():void;
+
 }
 
 class Encyclopedia extends ReferenceItem{
@@ -117,12 +119,17 @@ class Encyclopedia extends ReferenceItem{
         console.log(`Edition:${this.edition}`);
     }
 
+    printCitation(){
+
+        console.log("title - year");
+
+    }
 }
 
-let ref = new ReferenceItem("1984", 1984);
+/*let ref = new ReferenceItem("1984", 1984);
 ref.publisherSetter("solidjays");
 ref.printItem();
-console.log(ref.publisherGetter());
+console.log(ref.publisherGetter());*/
 
 let refBook = new Encyclopedia("Kabanchik raspravil plechi", 109, 1);
 refBook.printItem();
