@@ -1,5 +1,11 @@
 enum Category {Analyst = "Business analyst", Developer ="Developer",Designer = "Designer",QA = "QA",Scrum = "Scrum master"}
 
+
+interface PrizeLogger
+{
+    (str:string):void; 
+}
+
 interface Workers{
     id:number;
     Name:string;
@@ -35,14 +41,91 @@ interface Librarian extends Person
 
 let favoriteAuthor:Author = {name:"Nill", email:"kiggers@kk.klan", numBooksPublished:8441}
 
-let favoriteLibrarian:Librarian = {name:"Nate", email:"higgers@waffen.ss", department:"Totenkopf", assistCustomer:function tmp(name:string) {
-    console.log("alhamdulillah");
-}}
+/*let favoriteLibrarian:Librarian = {name:"Nate", email:"higgers@waffen.ss", department:"Totenkopf", assistCustomer:function tmp(name:string) {
+    console.log("alhamdulillah "+name);
+}}*/ //комментирование по заданию В)
 
-interface PrizeLogger
+class UniversityLibrarian implements Librarian
 {
-    (str:string):void; 
+
+    name:string;
+    email:string;
+    department:string;
+
+    assistCustomer(custName:string):void
+    {
+        
+        console.log(`${this.name} is assisting ${custName}`);
+
+    }
+
 }
+
+let favoriteLibrarian:Librarian = new UniversityLibrarian();
+favoriteLibrarian.name = "Baldick";
+favoriteLibrarian.assistCustomer("M@k$$im")
+
+class ReferenceItem{
+
+    /*title:string;
+    year:number;
+
+    constructor(newTitle:string, newYear:number)
+    {
+        this.title = newTitle;
+        this.year=newYear;
+        console.log("Creating new ReferenceItem....")
+
+    }*/
+
+    private __publisher:string;
+    static department:string = "Tzahal";
+
+    publisherGetter():string
+    {
+
+        return this.__publisher.toUpperCase();
+
+    }
+
+    publisherSetter(newPublisher:string):void
+    {
+
+        this.__publisher = newPublisher;
+
+    }
+
+
+    constructor(public title:string, protected year:number){}
+
+    printItem() {
+        console.log(`${this.title} was published in ${this.year} by ${ReferenceItem.department}`);
+    }
+
+}
+
+class Encyclopedia extends ReferenceItem{
+
+    constructor(title:string, year:number, public edition:number)
+    {
+        super(title, year);
+
+    }
+
+    printItem() {
+        console.log(`${this.title} was published in ${this.year} by ${ReferenceItem.department}`);
+        console.log(`Edition:${this.edition}`);
+    }
+
+}
+
+let ref = new ReferenceItem("1984", 1984);
+ref.publisherSetter("solidjays");
+ref.printItem();
+console.log(ref.publisherGetter());
+
+let refBook = new Encyclopedia("Kabanchik raspravil plechi", 109, 1);
+refBook.printItem();
 
 function prizeReal(str:string) {
     console.log(str)
