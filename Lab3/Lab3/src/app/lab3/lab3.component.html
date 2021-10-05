@@ -1,0 +1,5 @@
+<label>Введите катеты:</label>
+<input [(ngModel)]="a" (change)="calc($event)">
+<input [(ngModel)]="b" (change)="calc($event)">
+<p>Гипотенуза = {{c}}
+<p>Площадь = {{s}}
