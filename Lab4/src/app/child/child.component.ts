@@ -9,7 +9,7 @@ export class ChildComponent implements OnChanges{
 
   @Input() inpText:string;
 
-  procText:string = "niggers";
+  procText:string = "nate higgers";
 
     
   ngOnChanges(): void {
